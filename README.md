@@ -14,9 +14,13 @@ reposynclite
 ## Build Kernel
 
 cd kernel/google/crosshatch
+
 git submodule sync
+
 git submodule update --init
+
 ./build.sh bonito
+
 cd ../../..
 
 ## Build env
@@ -31,10 +35,15 @@ See: https://grapheneos.org/build#reproducible-builds
 
 ## Extracting vendor files
 
-vendor/android-prepare-vendor/execute-all.sh -d sargo -b ### -o vendor/android-prepare-vendor
+-b flag is the build you want to use, e.g. QQ1A.200105.002
+
+vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ1A.200105.002 -o vendor/android-prepare-vendor
+
 mkdir -p vendor/google_devices
+
 rm -rf vendor/google_devices/sargo
-mv vendor/android-prepare-vendor/sargo/###/vendor/google_devices/* vendor/google_devices/
+
+mv vendor/android-prepare-vendor/sargo/QQ1A.200105.002/vendor/google_devices/* vendor/google_devices/
 
 ## Building
 
@@ -45,15 +54,25 @@ make target-files-package -j20
 ## Generate release keys
 
 mkdir -p keys/sargo
+
 cd keys/sargo
+
 cd keys/crosshatch
+
 ../../development/tools/make_key releasekey '/CN=svcOS/'
+
 ../../development/tools/make_key platform '/CN=svcOS/'
+
 ../../development/tools/make_key shared '/CN=svcOS/'
+
 ../../development/tools/make_key media '/CN=svcOS/'
+
 ../../development/tools/make_key networkstack '/CN=svcOS/'
+
 openssl genrsa -out avb.pem 2048
+
 ../../external/avb/avbtool extract_public_key --key avb.pem --output avb_pkmd.bin
+
 cd ../..
 
 make -j20 brillo_update_payload
