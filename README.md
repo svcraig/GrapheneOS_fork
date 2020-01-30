@@ -4,6 +4,8 @@ These instructions are specific to the Pixel 3a (sargo) because reasons.
 
 ## Repo setup
 
+Note that this repo links to a custom fork of F-Droid's privileged extension, where I've hardcoded in my release keys to simply the build process. Either remove this if you're not interested, modify it manually after sync, or refork it yourself and change accordingly
+
 mkdir -p workspace
 
 cd workspace
@@ -24,7 +26,53 @@ git submodule update --init
 
 cd ../../..
 
-## Build env
+## Build F-Droid
+
+### Download the SDK
+
+cd /somewhere/outside/the/workspace
+
+mkdir sdk
+
+cd sdk
+
+wget https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O sdk-tools.zip
+
+unzip sdk-tools.zip
+
+yes | ./tools/bin/sdkmanager --licenses
+
+./tools/android update sdk -u --use-sdk-wrapper
+
+# workaround for licnese issue with f-droid using older sdk (didn't investigate further)
+
+yes | ./tools/bin/sdkmanager "build-tools;27.0.3" "platforms;android-27"
+
+### Check out client and build
+
+Note that this fork of fdroidclient adds support for an extra system permission as well as unreleased support for API29.
+
+cd /somewhere/outside/the/workspace
+
+git clone git@gitlab.com:svcraig/fdroidclient.git
+
+cd fdroidclient
+
+git checkout
+
+SDK_DIR=/path/to/sdk
+
+echo "sdk.dir=$SDK_DIR" > local.properties
+
+echo "sdk.dir=$SDK_DIR" > app/local.properties
+
+./gradlew assembleRelease
+
+cp -f app/build/outputs/apk/full/release/app-full-release-unsigned.apk /path/to/workspace/packages/apps/F-Droid/F-Droid.apk
+
+cd /path/to/workspace
+
+## Setup build env
 
 source script/envsetup.sh
 
