@@ -5,6 +5,7 @@ These instructions are specific to the Pixel 3a (sargo) because reasons.
 ## Repo setup
 
 mkdir -p workspace
+
 cd workspace
 
 repo init -u https://github.com/svcraig/platform_manifest.git -b 10
@@ -35,7 +36,7 @@ See: https://grapheneos.org/build#reproducible-builds
 
 ## Extracting vendor files
 
--b flag is the build you want to use, e.g. QQ1A.200105.002
+The -b flag needs to match the build the repos from the manifest are based on
 
 vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ1A.200105.002 -o vendor/android-prepare-vendor
 
