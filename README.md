@@ -47,7 +47,7 @@ Workaround for licnese issue with f-droid using older sdk (didn't investigate fu
 
 Note that this fork of fdroidclient adds support for an extra system permission as well as unreleased support for API29.
 
-``
+```
 cd /somewhere/outside/the/workspace
 git clone git@gitlab.com:svcraig/fdroidclient.git
 cd fdroidclient
