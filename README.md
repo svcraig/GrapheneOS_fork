@@ -4,9 +4,14 @@ These instructions are specific to the Pixel 3a (sargo) because reasons. Credit 
 
 These directions are intended for someone familiar with Linux, AOSP, building Android apps, etc.
 
-## Repo setup
+Fork of GrapheneOS tag "QQ1A.200105.002.2020.01.06.21", which maps to Google's latest 2020.01.01 release including security bulletins and vendor files.
 
 Note that this repo links to a custom fork of F-Droid's privileged extension, where I've hardcoded in my release keys to simply the build process. Either remove this if you're not interested, modify it manually after sync, or refork it yourself and change accordingly
+
+TBD:
+- Properly tag repos and clean up Manifest
+
+## Repo setup
 
 ```
 mkdir -p workspace
