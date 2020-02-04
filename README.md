@@ -4,7 +4,7 @@ These instructions are specific to the Pixel 3a (sargo) because reasons. Credit 
 
 These directions are intended for someone familiar with Linux, AOSP, building Android apps, etc.
 
-Fork of GrapheneOS tag "QQ1A.200105.002.2020.01.06.21", which maps to Google's latest 2020.01.01 release including security bulletins and vendor files.
+Fork of GrapheneOS 10 branch, which maps to Google's "QQ1A.200205.002" for Feb 2020, including security bulletins and vendor files.
 
 Note that this repo links to a custom fork of F-Droid's privileged extension, where I've hardcoded in my release keys to simply the build process. Either remove this if you're not interested, modify it manually after sync, or refork it yourself and change accordingly
 
@@ -83,10 +83,10 @@ See: https://grapheneos.org/build#reproducible-builds
 The -b flag needs to match the build the repos from the manifest are based on
 
 ```
-vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ1A.200105.002 -o vendor/android-prepare-vendor
+vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ1A.200205.002 -o vendor/android-prepare-vendor
 mkdir -p vendor/google_devices
 rm -rf vendor/google_devices/sargo
-mv vendor/android-prepare-vendor/sargo/QQ1A.200105.002/vendor/google_devices/* vendor/google_devices/
+mv vendor/android-prepare-vendor/sargo/QQ1A.200205.002/vendor/google_devices/* vendor/google_devices/
 ```
 
 ## Building
