@@ -67,13 +67,6 @@ cp -f app/build/outputs/apk/full/release/app-full-release-unsigned.apk /path/to/
 cd /path/to/workspace
 ```
 
-## Setup build env
-
-```
-source script/envsetup.sh
-choosecombo release aosp_sargo user
-```
-
 ## Reproducible builds (untested)
 
 See: https://grapheneos.org/build#reproducible-builds
@@ -86,7 +79,15 @@ The -b flag needs to match the build the repos from the manifest are based on
 vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ2A.200305.002 -o vendor/android-prepare-vendor
 mkdir -p vendor/google_devices
 rm -rf vendor/google_devices/sargo
-mv vendor/android-prepare-vendor/sargo/QQ1A.200205.002/vendor/google_devices/* vendor/google_devices/
+rm -rf vendor/google_devices/bonito
+mv vendor/android-prepare-vendor/sargo/QQ2A.200305.002/vendor/google_devices/* vendor/google_devices/
+```
+
+## Setup build env
+
+```
+source script/envsetup.sh
+choosecombo release aosp_sargo user
 ```
 
 ## Building
