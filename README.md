@@ -4,7 +4,7 @@ These instructions are specific to the Pixel 3a (sargo) because reasons. Credit 
 
 These directions are intended for someone familiar with Linux, AOSP, building Android apps, etc.
 
-Fork of GrapheneOS 10 branch, which maps to Google's "QQ1A.200205.002" for Feb 2020, including security bulletins and vendor files.
+Fork of GrapheneOS 10 branch, which maps to Google's "QQ2A.200305.002" for March 2020, including security bulletins and vendor files.
 
 Note that this repo links to a custom fork of F-Droid's privileged extension, where I've hardcoded in my release keys to simply the build process. Either remove this if you're not interested, modify it manually after sync, or refork it yourself and change accordingly
 
@@ -83,7 +83,7 @@ See: https://grapheneos.org/build#reproducible-builds
 The -b flag needs to match the build the repos from the manifest are based on
 
 ```
-vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ1A.200205.002 -o vendor/android-prepare-vendor
+vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ2A.200305.002 -o vendor/android-prepare-vendor
 mkdir -p vendor/google_devices
 rm -rf vendor/google_devices/sargo
 mv vendor/android-prepare-vendor/sargo/QQ1A.200205.002/vendor/google_devices/* vendor/google_devices/
@@ -131,3 +131,37 @@ make -j20 brillo_update_payload
 - Enable OEM unlock (in Settings)
 - Unlock bootloader (fastboot flashing unlock)
 - Erase AVB key (fastboot erase avb_custom_key)
+
+## Update upstream (AOSP monthly changes + GrapheneOS ongoing changes)
+
+Each forked repo has to be updated from its respective parent:
+
+- https://github.com/svcraig/platform_manifest -> git@github.com:GrapheneOS/platform_manifest.git
+- https://github.com/svcraig/platform_build -> git@github.com:GrapheneOS/platform_build.git
+- https://github.com/svcraig/platform_frameworks_base -> git@github.com:GrapheneOS/platform_frameworks_base.git
+- https://github.com/svcraig/platform_packages_apps_Updater -> git@github.com:GrapheneOS/platform_packages_apps_Updater.git
+- https://github.com/svcraig/platform_packages_apps_Launcher3 -> git@github.com:GrapheneOS/platform_packages_apps_Launcher3.git
+
+They're forked from GrapheneOS, which are forked from AOSP, so updating to latest GrapheneOS tag will pull in changes from AOSP included in that tag. Therefore the only upstream we need is GrapheneOS.
+
+First check current remotes:
+
+`git remote -v`
+
+If needed, add remote:
+
+`git remote add upstream git://path.to.repo.git`
+
+Fetch latest upstream:
+
+`git fetch upstream`
+
+Ensure we're on the right branch of our fork and have the latest changes:
+
+`git checkout 10`
+`git status`
+`git pull --rebase`
+
+Merge changes from upstream:
+
+`git merge upstream/10`
