@@ -80,7 +80,7 @@ vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ2A.200305.002 -o vend
 mkdir -p vendor/google_devices
 rm -rf vendor/google_devices/sargo
 rm -rf vendor/google_devices/bonito
-mv vendor/android-prepare-vendor/sargo/QQ2A.200305.002/vendor/google_devices/* vendor/google_devices/
+mv vendor/android-prepare-vendor/sargo/qq2a.200305.002/vendor/google_devices/* vendor/google_devices/
 ```
 
 ## Setup build env
