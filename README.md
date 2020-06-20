@@ -4,7 +4,7 @@ These instructions are specific to the Pixel 3a (sargo) because reasons. Credit 
 
 These directions are intended for someone familiar with Linux, AOSP, building Android apps, etc.
 
-Fork of GrapheneOS tag "QQ2A.200501.001.B2.2020.05.05.02", which maps to Google's "QQ2A.200501.001" for May 2020, including security bulletins and vendor files.
+Fork of GrapheneOS tag "QQ3A.200605.002.2020.06.02.02", which maps to Google's "QQ3A.200605.002" for June 2020, including security bulletins and vendor files.
 
 Note that this repo links to a custom fork of F-Droid's privileged extension, where I've hardcoded in my release keys to simply the build process. Either remove this if you're not interested, modify it manually after sync, or refork it yourself and change accordingly
 
@@ -76,11 +76,11 @@ See: https://grapheneos.org/build#reproducible-builds
 The -b flag needs to match the build the repos from the manifest are based on
 
 ```
-vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ2A.200501.001 -o vendor/android-prepare-vendor
+vendor/android-prepare-vendor/execute-all.sh -d sargo -b QQ3A.200605.002 -o vendor/android-prepare-vendor
 mkdir -p vendor/google_devices
 rm -rf vendor/google_devices/sargo
 rm -rf vendor/google_devices/bonito
-mv vendor/android-prepare-vendor/sargo/qq2a.200501.001/vendor/google_devices/* vendor/google_devices/
+mv vendor/android-prepare-vendor/sargo/qq3a.200605.002/vendor/google_devices/* vendor/google_devices/
 ```
 
 ## Setup build env
@@ -164,4 +164,4 @@ Ensure we're on the right branch of our fork and have the latest changes:
 
 Merge changes from upstream:
 
-`git merge upstream/QQ2A.200501.001.B2.2020.05.05.02`
+`git merge upstream/QQ3A.200605.002.2020.06.02.02`
